@@ -1,5 +1,5 @@
 // Cal.com Integration & Embed Manager for Rohith S Portfolio
-// Supports both official Cal.com popup modal, inline embedded calendar, and handle customization
+// Gracefully handles scheduling without showing 404 error pages when links are uninitialized
 
 export function initCalIntegration(defaultCalLink = "rohith-s/30min") {
   let activeCalLink = localStorage.getItem("user_cal_link") || defaultCalLink;
@@ -24,7 +24,7 @@ export function initCalIntegration(defaultCalLink = "rohith-s/30min") {
         if (typeof namespace === "string") {
           cal.ns[namespace] = cal.ns[namespace] || api;
           p(cal.ns[namespace], ar);
-          p(cal, ["initNamespace", namespace]);
+          p(cal.ns[namespace], ["initNamespace", namespace]);
         } else {
           p(cal, ar);
         }
@@ -44,19 +44,13 @@ export function initCalIntegration(defaultCalLink = "rohith-s/30min") {
     });
   }
 
-  // Bind all buttons that trigger Cal Modal
   setupCalButtons(activeCalLink);
-  renderInlineCal(activeCalLink);
-  setupCalHandleModifier(activeCalLink);
+  renderSchedulerWidget(activeCalLink);
 }
 
 export function setupCalButtons(calLink) {
   const calButtons = document.querySelectorAll("[data-action='open-cal']");
   calButtons.forEach((btn) => {
-    btn.setAttribute("data-cal-link", calLink);
-    btn.setAttribute("data-cal-namespace", "");
-    btn.setAttribute("data-cal-config", '{"layout":"month_view","theme":"dark"}');
-
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       openCalModal(calLink);
@@ -65,92 +59,187 @@ export function setupCalButtons(calLink) {
 }
 
 export function openCalModal(calLink) {
-  if (window.Cal) {
-    try {
-      window.Cal("modal", {
-        calLink: calLink,
-        config: { layout: "month_view", theme: "dark" }
-      });
-      return;
-    } catch (err) {
-      console.warn("Cal modal fallback triggered:", err);
-    }
-  }
-
-  // Graceful fallback to modern dialog modal with Cal iframe
   const calDialog = document.getElementById("cal-modal-dialog");
-  const calFrame = document.getElementById("cal-modal-frame");
-  if (calDialog && calFrame) {
-    calFrame.src = `https://cal.com/${calLink}?embed=true&theme=dark`;
-    if (typeof calDialog.showModal === "function") {
-      calDialog.showModal();
-    } else {
-      window.open(`https://cal.com/${calLink}`, "_blank");
-    }
-  } else {
-    window.open(`https://cal.com/${calLink}`, "_blank");
-  }
-}
+  const modalBody = document.getElementById("cal-modal-dynamic-content");
 
-export function renderInlineCal(calLink) {
-  const container = document.getElementById("cal-inline-widget");
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="cal-embed-wrapper relative w-full h-[620px] rounded-2xl overflow-hidden border border-white/10 bg-slate-900/60 shadow-2xl backdrop-blur-md">
-      <div class="cal-embed-header flex items-center justify-between px-5 py-3 border-b border-white/10 bg-slate-950/70">
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-400">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  if (modalBody) {
+    modalBody.innerHTML = `
+      <div class="p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
               <line x1="8" y1="2" x2="8" y2="6"></line>
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
-          </span>
+          </div>
           <div>
-            <div class="text-xs font-semibold text-slate-200">Live Scheduling Powered by Cal.com</div>
-            <div class="text-[11px] text-slate-400">cal.com/${calLink}</div>
+            <h3 class="text-xl font-bold text-slate-100">Schedule Meeting with Rohith S</h3>
+            <p class="text-xs text-slate-400 font-mono">Direct Connection · Google Meet / Phone / Virtual</p>
           </div>
         </div>
-        <div class="flex items-center gap-2">
-          <a href="https://cal.com/${calLink}" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1 transition-colors px-2 py-1 rounded bg-indigo-500/10 hover:bg-indigo-500/20">
-            <span>Open in New Tab</span>
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
+
+        <p class="text-sm text-slate-300 leading-relaxed mb-6">
+          Pick your preferred meeting slot or reach out directly to coordinate a convenient time:
+        </p>
+
+        <div class="space-y-3 mb-6">
+          <a href="mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%3A%2015-Min%20Introduction&body=Hi%20Rohith%2C%0A%0AI%20would%20like%20to%20schedule%20a%20quick%2015-minute%20introductory%20chat%20with%20you.%0A%0AProposed%20Date%2FTime%3A%20%0ATopic%3A%20" class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-white/10 hover:border-indigo-500/50 transition-all group">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">⚡</span>
+              <div>
+                <div class="text-sm font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">15-Min Quick Intro</div>
+                <div class="text-xs text-slate-400">Coffee chat, background overview & quick inquiries</div>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-semibold text-indigo-400">Book via Email →</span>
+          </a>
+
+          <a href="mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%3A%2030-Min%20Technical%20Interview%20%2F%20Collaboration&body=Hi%20Rohith%2C%0A%0AI%20would%20like%20to%20schedule%20a%2030-minute%20technical%20chat%20regarding%20software%20engineering%20opportunities%20%2F%20projects.%0A%0AProposed%20Date%2FTime%3A%20%0ATopic%3A%20" class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-white/10 hover:border-indigo-500/50 transition-all group">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">💻</span>
+              <div>
+                <div class="text-sm font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">30-Min Technical & Internship Chat</div>
+                <div class="text-xs text-slate-400">Deep-dive into AI/ML, backend architectures, or internship roles</div>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-semibold text-indigo-400">Book via Email →</span>
+          </a>
+
+          <a href="mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%3A%2045-Min%20Project%20Collaboration&body=Hi%20Rohith%2C%0A%0AI%20would%20like%20to%20schedule%20a%2045-minute%20discussion%20regarding%20academic%20mentorship%20or%20hackathon%20collaboration.%0A%0AProposed%20Date%2FTime%3A%20%0ATopic%3A%20" class="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-white/10 hover:border-indigo-500/50 transition-all group">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🤝</span>
+              <div>
+                <div class="text-sm font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">45-Min Project & Mentorship Session</div>
+                <div class="text-xs text-slate-400">Collaborative engineering, hackathon strategy & student guidance</div>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-semibold text-indigo-400">Book via Email →</span>
           </a>
         </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10">
+          <div class="text-xs text-slate-400 font-mono">
+            Direct Phone: <a href="tel:+918660573142" class="text-emerald-400 font-bold hover:underline">+91 8660573142</a>
+          </div>
+          <button class="btn-secondary text-xs py-2 px-4" onclick="document.getElementById('cal-modal-dialog').close()">
+            Close
+          </button>
+        </div>
       </div>
-      
-      <!-- Cal iframe container with fallback instructions -->
-      <iframe 
-        src="https://cal.com/${calLink}?embed=true&theme=dark" 
-        class="w-full h-[calc(100%-52px)] border-0" 
-        title="Schedule meeting with Rohith S via Cal.com"
-        loading="lazy"
-      ></iframe>
-    </div>
-  `;
+    `;
+  }
+
+  if (calDialog && typeof calDialog.showModal === "function") {
+    calDialog.showModal();
+  } else {
+    window.location.href = `mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%20with%20Rohith%20S`;
+  }
 }
 
-export function setupCalHandleModifier(currentLink) {
-  const customizeBtn = document.getElementById("btn-customize-cal");
-  if (!customizeBtn) return;
+export function renderSchedulerWidget(calLink) {
+  const container = document.getElementById("cal-inline-widget");
+  if (!container) return;
 
-  customizeBtn.addEventListener("click", () => {
-    const newHandle = prompt(
-      "Enter your Cal.com username / event link (e.g., 'rohith-s' or 'rohith-s/30min'):",
-      currentLink
-    );
-    if (newHandle && newHandle.trim()) {
-      const cleanHandle = newHandle.trim().replace(/^https?:\/\/cal\.com\//, "");
-      localStorage.setItem("user_cal_link", cleanHandle);
-      setupCalButtons(cleanHandle);
-      renderInlineCal(cleanHandle);
-      alert(`Cal.com link updated to: cal.com/${cleanHandle}`);
-    }
-  });
+  // Render high-end interactive meeting hub without error-prone iframes
+  container.innerHTML = `
+    <div class="cal-embed-wrapper relative w-full rounded-2xl overflow-hidden border border-white/10 bg-slate-900/80 shadow-2xl backdrop-blur-md p-6 sm:p-8">
+      
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-lg">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="text-lg font-bold text-slate-100 flex items-center gap-2">
+              <span>Book a 1-on-1 Session</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 status-pulse"></span>
+            </div>
+            <div class="text-xs text-slate-400">Available across IST / US East timezones for internships & projects</div>
+          </div>
+        </div>
+
+        <a href="mailto:rohithsvernekar2@gmail.com?subject=Direct%20Meeting%20Inquiry%20for%20Rohith%20S" class="btn-primary text-xs py-2 px-4 shadow-md self-start sm:self-auto">
+          <span>Instant Email Booking ✉</span>
+        </a>
+      </div>
+
+      <!-- Meeting Slots Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        
+        <!-- Slot 1 -->
+        <div class="glass-panel p-5 border border-white/10 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-400/20">15 MINS</span>
+              <span class="text-slate-500 text-xs font-mono">Quick Intro</span>
+            </div>
+            <h4 class="text-base font-bold text-slate-100 mb-2 group-hover:text-indigo-300 transition-colors">Virtual Coffee &amp; Intro</h4>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+              Casual discussion on engineering background, student projects, or quick alignment.
+            </p>
+          </div>
+          <a href="mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%3A%2015-Min%20Introduction&body=Hi%20Rohith%2C%0A%0AI%20would%20like%20to%20schedule%20a%20quick%2015-minute%20introductory%20chat%20with%20you.%0A%0AProposed%20Time%3A%20" class="text-xs font-mono font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 mt-auto">
+            <span>Schedule 15 mins →</span>
+          </a>
+        </div>
+
+        <!-- Slot 2 (Highlighted) -->
+        <div class="glass-panel p-5 border border-indigo-500/40 bg-indigo-950/20 hover:border-indigo-400 transition-all flex flex-col justify-between group shadow-lg">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">30 MINS</span>
+              <span class="text-indigo-400 text-xs font-mono font-semibold">Recommended</span>
+            </div>
+            <h4 class="text-base font-bold text-slate-100 mb-2 group-hover:text-indigo-300 transition-colors">Technical Deep-Dive</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Discussion on AI/ML models, backend architectures, SQL normalization, or internship roles.
+            </p>
+          </div>
+          <a href="mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%3A%2030-Min%20Technical%20Interview&body=Hi%20Rohith%2C%0A%0AI%20would%20like%20to%20schedule%20a%2030-minute%20technical%20chat%20with%20you.%0A%0AProposed%20Time%3A%20" class="text-xs font-mono font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 mt-auto">
+            <span>Schedule 30 mins →</span>
+          </a>
+        </div>
+
+        <!-- Slot 3 -->
+        <div class="glass-panel p-5 border border-white/10 hover:border-indigo-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-400/20">45 MINS</span>
+              <span class="text-slate-500 text-xs font-mono">Collab</span>
+            </div>
+            <h4 class="text-base font-bold text-slate-100 mb-2 group-hover:text-indigo-300 transition-colors">Collaboration &amp; Mentorship</h4>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+              Project roadmap review, hackathon planning, or academic mentorship for PUC students.
+            </p>
+          </div>
+          <a href="mailto:rohithsvernekar2@gmail.com?subject=Meeting%20Request%3A%2045-Min%20Collaboration&body=Hi%20Rohith%2C%0A%0AI%20would%20like%20to%20schedule%20a%2045-minute%20session%20with%20you.%0A%0AProposed%20Time%3A%20" class="text-xs font-mono font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 mt-auto">
+            <span>Schedule 45 mins →</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer Info -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10 text-xs font-mono text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Direct Response Guaranteed within 24 Hours</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="tel:+918660573142" class="text-slate-300 hover:text-white">Call: +91 8660573142</a>
+          <span>·</span>
+          <a href="mailto:rohithsvernekar2@gmail.com" class="text-indigo-400 hover:underline">rohithsvernekar2@gmail.com</a>
+        </div>
+      </div>
+
+    </div>
+  `;
 }

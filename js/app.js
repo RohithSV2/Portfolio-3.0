@@ -402,8 +402,20 @@ export function renderCertificates(filter = 'All') {
           </span>
         </div>
 
+        <!-- Thumbnail Preview (Clickable) -->
+        <div class="relative w-full h-36 bg-slate-950/80 rounded-lg overflow-hidden border border-white/10 mb-4 cursor-pointer group/thumb" data-action="view-cert-card" data-id="${c.id}" title="Click to view full certificate">
+          <img src="${c.image}" alt="${c.title}" class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center gap-2 text-xs font-mono text-white font-bold backdrop-blur-xs">
+            <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span>View Certificate</span>
+          </div>
+        </div>
+
         <!-- Title -->
-        <h3 class="text-lg font-bold text-slate-100 group-hover:text-indigo-300 transition-colors mb-2">${c.title}</h3>
+        <h3 class="text-lg font-bold text-slate-100 group-hover:text-indigo-300 transition-colors mb-2 cursor-pointer" data-action="view-cert-card" data-id="${c.id}">${c.title}</h3>
         <p class="text-xs text-slate-300 mb-4 leading-relaxed line-clamp-3">${c.summary}</p>
 
         <!-- Skills Verified -->
@@ -420,30 +432,30 @@ export function renderCertificates(filter = 'All') {
       <div class="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-2 mt-auto">
         <button class="btn-copy-id text-[11px] font-mono text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors py-1.5 px-2.5 rounded bg-slate-800/60 hover:bg-slate-800" data-id="${c.credentialId}">
           <span>ID: ${c.credentialId}</span>
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
           </svg>
         </button>
 
         <div class="flex items-center gap-1.5">
-          <button class="btn-inspect-cert text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition-colors py-1.5 px-3 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20" data-id="${c.id}">
-            <span>Inspect</span>
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
+          ${c.fileUrl ? `
+            <a href="${c.fileUrl}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-cyan-300 hover:text-white flex items-center gap-1.5 transition-all py-1.5 px-3 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/30 shadow-sm" title="Open certificate file directly">
+              <span>View Certificate ↗</span>
+            </a>
+          ` : `
+            <button class="btn-inspect-cert text-xs font-bold text-indigo-300 hover:text-white flex items-center gap-1.5 transition-all py-1.5 px-3 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/30 shadow-sm" data-id="${c.id}">
+              <span>View Details ↗</span>
+            </button>
+          `}
+
+          <button class="btn-inspect-cert text-xs text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5" data-id="${c.id}" title="Inspect full syllabus & validation">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg>
           </button>
-
-          ${c.fileUrl ? `
-            <a href="${c.fileUrl}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors py-1.5 px-2.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20" title="Open original document / verify link">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
-          ` : ''}
         </div>
       </div>
     </div>
@@ -455,7 +467,8 @@ export function renderCertificates(filter = 'All') {
 
 function bindCertificateButtons() {
   document.querySelectorAll('.btn-copy-id').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const id = btn.getAttribute('data-id');
       navigator.clipboard.writeText(id).then(() => {
         showToast(`Copied Credential ID: ${id}`);
@@ -463,7 +476,7 @@ function bindCertificateButtons() {
     });
   });
 
-  document.querySelectorAll('.btn-inspect-cert').forEach(btn => {
+  document.querySelectorAll('.btn-inspect-cert, [data-action="view-cert-card"]').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
       const cert = portfolioData.certificates.find(c => c.id === id);
@@ -477,36 +490,41 @@ function openCertificateModal(c) {
   const body = document.getElementById('cert-modal-content');
   if (!modal || !body) return;
 
-  const isImage = c.fileUrl && (c.fileUrl.endsWith('.jpeg') || c.fileUrl.endsWith('.jpg') || c.fileUrl.endsWith('.png') || c.fileUrl.endsWith('.svg'));
+  const isImage = c.fileUrl && (c.fileUrl.endsWith('.jpeg') || c.fileUrl.endsWith('.jpg') || c.fileUrl.endsWith('.png'));
   const isPdf = c.fileUrl && c.fileUrl.endsWith('.pdf');
 
   body.innerHTML = `
     <div class="relative">
-      <div class="w-full bg-slate-950 p-4 border-b border-white/10 flex items-center justify-center min-h-[220px]">
+      <!-- Certificate Document Container -->
+      <div class="w-full bg-slate-950 p-4 border-b border-white/10 flex flex-col items-center justify-center">
         ${isImage ? `
-          <img src="${c.fileUrl}" alt="${c.title}" class="max-h-[380px] w-auto rounded-lg shadow-2xl border border-white/10" />
-        ` : isPdf ? `
-          <div class="w-full h-80 bg-slate-900 rounded-lg overflow-hidden border border-white/10 flex flex-col items-center justify-center p-6 text-center">
-            <svg class="w-16 h-16 text-indigo-400 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            <h4 class="text-base font-bold text-slate-100 mb-1">${c.title}</h4>
-            <p class="text-xs text-slate-400 mb-4">Official PDF Document on file: ${c.fileUrl.split('/').pop()}</p>
-            <a href="${c.fileUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4">
-              <span>View &amp; Download Original PDF</span>
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
+          <div class="relative group/doc w-full flex flex-col items-center">
+            <img src="${c.fileUrl}" alt="${c.title}" class="max-h-[420px] w-auto rounded-lg shadow-2xl border border-white/10 mb-3" />
+            <a href="${c.fileUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4 shadow-lg">
+              <span>Open Full-Resolution Certificate in New Tab ↗</span>
             </a>
           </div>
+        ` : isPdf ? `
+          <div class="w-full flex flex-col items-center">
+            <iframe src="${c.fileUrl}#view=FitH" class="w-full h-[400px] rounded-lg border border-white/10 bg-slate-900 mb-3" title="${c.title}"></iframe>
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="${c.fileUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4 shadow-lg">
+                <span>Open Original PDF in New Tab ↗</span>
+              </a>
+              <a href="${c.fileUrl}" download class="btn-secondary text-xs py-2 px-4">
+                <span>Download PDF ↓</span>
+              </a>
+            </div>
+          </div>
         ` : `
-          <img src="${c.image}" alt="${c.title}" class="max-h-[340px] w-auto rounded-lg shadow-xl" />
+          <div class="w-full flex flex-col items-center">
+            <img src="${c.image}" alt="${c.title}" class="max-h-[320px] w-auto rounded-lg shadow-xl mb-3" />
+            ${c.verificationLink ? `
+              <a href="${c.verificationLink}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4 shadow-lg">
+                <span>Verify Online on Coursera ↗</span>
+              </a>
+            ` : ''}
+          </div>
         `}
       </div>
 
@@ -535,7 +553,7 @@ function openCertificateModal(c) {
         <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10">
           <div class="flex items-center gap-2">
             <button class="btn-primary text-xs py-2 px-3" onclick="navigator.clipboard.writeText('${c.credentialId}').then(() => alert('Credential ID copied: ${c.credentialId}'))">
-              <span>Copy ID: ${c.credentialId}</span>
+              <span>Copy Credential ID</span>
             </button>
             ${c.verificationLink ? `
               <a href="${c.verificationLink}" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2 px-3">
