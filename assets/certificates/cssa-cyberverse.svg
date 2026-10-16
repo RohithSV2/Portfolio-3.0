@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" width="100%" height="100%">
+  <defs>
+    <linearGradient id="certBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b132b" />
+      <stop offset="100%" stop-color="#1c2541" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Border & Paper -->
+  <rect x="10" y="10" width="680" height="440" rx="16" fill="url(#certBg)" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="25" y="25" width="650" height="410" rx="10" fill="none" stroke="#1e3a8a" stroke-dasharray="8,6" stroke-width="1.5"/>
+
+  <!-- Corner Ornaments -->
+  <path d="M 35 60 L 35 35 L 60 35" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+  <path d="M 665 60 L 665 35 L 640 35" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+  <path d="M 35 400 L 35 425 L 60 425" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+  <path d="M 665 400 L 665 425 L 640 425" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+
+  <!-- Organization Header -->
+  <text x="350" y="70" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#38bdf8" text-anchor="middle" letter-spacing="4">CYBERVERSE FOUNDATION</text>
+  <text x="350" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">CERTIFICATE OF TECHNICAL EXCELLENCE &amp; PROFICIENCY</text>
+
+  <!-- Center Text -->
+  <text x="350" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#cbd5e1" text-anchor="middle">This is formally conferred upon</text>
+  
+  <!-- Recipient Name -->
+  <text x="350" y="195" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-size="34" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">ROHITH S</text>
+  <line x1="180" y1="210" x2="520" y2="210" stroke="url(#cyanGrad)" stroke-width="2"/>
+
+  <!-- Qualification -->
+  <text x="350" y="245" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">for successfully demonstrating mastery and completing the rigorous criteria for</text>
+  <text x="350" y="280" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="url(#goldGrad)" text-anchor="middle">Certified Cybersecurity Associate (CSSA)</text>
+  <text x="350" y="305" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#a5b4fc" text-anchor="middle">Core Competencies: Threat Analysis · Perimeter Defense · Security Governance · Vulnerability Mitigation</text>
+
+  <!-- Official Badge Stamp -->
+  <circle cx="120" cy="365" r="38" fill="#172554" stroke="url(#goldGrad)" stroke-width="2"/>
+  <circle cx="120" cy="365" r="32" fill="none" stroke="#f59e0b" stroke-dasharray="4,3" stroke-width="1"/>
+  <text x="120" y="360" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#fde68a" text-anchor="middle">VERIFIED</text>
+  <text x="120" y="374" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#38bdf8" text-anchor="middle">CSSA</text>
+
+  <!-- Verification Details on right -->
+  <text x="440" y="355" font-family="'JetBrains Mono', monospace" font-size="11" fill="#cbd5e1">Credential ID: <tspan fill="#38bdf8">CYB-CSSA-2024-8841</tspan></text>
+  <text x="440" y="375" font-family="'JetBrains Mono', monospace" font-size="11" fill="#cbd5e1">Authority: <tspan fill="#4ade80">Cyberverse Foundation</tspan></text>
+  <text x="440" y="395" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94a3b8">Status: Verified &amp; Active</text>
+</svg>

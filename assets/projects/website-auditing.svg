@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgAudit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="360" rx="16" fill="url(#bgAudit)"/>
+
+  <!-- Window Header -->
+  <rect x="25" y="25" width="550" height="38" rx="8" fill="#1e293b"/>
+  <circle cx="45" cy="44" r="5" fill="#ef4444"/>
+  <circle cx="62" cy="44" r="5" fill="#eab308"/>
+  <circle cx="79" cy="44" r="5" fill="#22c55e"/>
+  <text x="110" y="49" font-family="'JetBrains Mono', monospace" font-size="12" fill="#c084fc">py-audit-tool // Automated SEO &amp; DOM Diagnostic</text>
+
+  <!-- Left: Crawler Diagnostic Console -->
+  <rect x="35" y="78" width="280" height="245" rx="10" fill="#090d16" stroke="#334155" stroke-width="1.5"/>
+  <text x="50" y="105" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#a855f7">CRAWLER STATUS: RUNNING</text>
+
+  <text x="50" y="132" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#38bdf8">&gt; GET https://target.dev/docs</text>
+  <text x="50" y="152" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#4ade80">&gt; Status: 200 OK | Parsed 142 tags</text>
+  <text x="50" y="172" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#f87171">&gt; WARN: Missing &lt;meta name="desc"&gt;</text>
+  <text x="50" y="192" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#f87171">&gt; ERROR: 404 Broken Anchor link</text>
+  <text x="50" y="212" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#fbbf24">&gt; WARN: Skipped H2 heading (H1 -&gt; H3)</text>
+  <text x="50" y="232" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#38bdf8">&gt; Depth: Level 3 recursive crawl</text>
+  
+  <rect x="50" y="255" width="250" height="52" rx="6" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="60" y="275" font-family="'JetBrains Mono', monospace" font-size="10" fill="#e9d5ff">TOTAL PAGES AUDITED: 1,480</text>
+  <text x="60" y="293" font-family="'JetBrains Mono', monospace" font-size="10" fill="#c084fc">REPORT GENERATED: audit_report.json</text>
+
+  <!-- Right: Scorecard & Visual Metrics -->
+  <rect x="330" y="78" width="235" height="245" rx="10" fill="#090d16" stroke="#334155" stroke-width="1.5"/>
+  <text x="345" y="105" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#38bdf8">AUDIT SCORECARD</text>
+
+  <!-- Circular Gauge -->
+  <circle cx="445" cy="165" r="42" fill="none" stroke="#334155" stroke-width="8"/>
+  <circle cx="445" cy="165" r="42" fill="none" stroke="#a855f7" stroke-width="8" stroke-dasharray="210, 264" stroke-linecap="round"/>
+  <text x="445" y="171" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">94%</text>
+
+  <text x="345" y="235" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#94a3b8">SEO Meta Tags: 98% pass</text>
+  <text x="345" y="255" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#94a3b8">Link Integrity: 99.2% valid</text>
+  <text x="345" y="275" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#94a3b8">Heading Hierarchy: Verified</text>
+
+  <rect x="345" y="287" width="205" height="25" rx="4" fill="#2e1065"/>
+  <text x="355" y="303" font-family="'JetBrains Mono', monospace" font-size="9.5" fill="#d8b4fe">AUTOMATED PY REPORT ENGINE</text>
+</svg>

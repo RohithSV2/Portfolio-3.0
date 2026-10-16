@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohith S | Information Science &amp; Engineering | Portfolio</title>
+  
+  <!-- Meta & SEO Tags -->
+  <meta name="description" content="Portfolio of Rohith S - Information Science &amp; Engineering Undergraduate at NIE Mysuru. Full-stack developer, AI &amp; deep learning researcher, certified cybersecurity associate." />
+  <meta name="keywords" content="Rohith S, Software Engineer, Information Science, NIE Mysuru, Full-Stack Developer, AI Chatbot, Deep Learning, Certified Cybersecurity Associate, Portfolio" />
+  <meta name="author" content="Rohith S" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Rohith S | Software Engineer &amp; AI Builder" />
+  <meta property="og:description" content="Explore projects, 11 verified credentials, system designs, and schedule a call with Rohith S via Cal.com." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/profile.jpg" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/profile.jpg" />
+</head>
+<body class="bg-grid-pattern text-slate-100">
+
+  <!-- ======================================================================
+       Floating Frosted Header Navigation
+       ====================================================================== -->
+  <header class="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="nav-glass-pill pointer-events-auto flex items-center justify-between gap-2 md:gap-6 px-4 md:px-6 py-2.5 max-w-5xl w-full">
+      <!-- Brand Logo with Photo -->
+      <a href="#hero" class="flex items-center gap-2.5 text-slate-100 hover:text-indigo-400 transition-colors font-bold text-sm tracking-wide">
+        <div class="relative w-8 h-8 rounded-lg overflow-hidden border border-indigo-500/50 shadow-md flex-shrink-0">
+          <img src="assets/profile.jpg" alt="Rohith S" class="w-full h-full object-cover object-top" />
+        </div>
+        <span class="hidden sm:inline font-mono">rohith<span class="text-indigo-400">.</span>s</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300 font-mono">
+        <a href="#about" class="hover:text-indigo-400 transition-colors">about</a>
+        <a href="#projects" class="hover:text-indigo-400 transition-colors">projects</a>
+        <a href="#skills" class="hover:text-indigo-400 transition-colors">skills</a>
+        <a href="#certificates" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+          <span>certifications</span>
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-indigo-500/20 text-indigo-300 font-mono">11</span>
+        </a>
+        <a href="#timeline" class="hover:text-indigo-400 transition-colors">timeline</a>
+        <a href="#cal-section" class="hover:text-indigo-400 transition-colors font-bold text-indigo-400 flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>connect (cal)</span>
+        </a>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex items-center gap-2">
+        <!-- Cal.com Quick Book Button -->
+        <button data-action="open-cal" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-full bg-indigo-600/90 hover:bg-indigo-500 text-white shadow-lg transition-all">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+          </svg>
+          <span>Book Call</span>
+        </button>
+
+        <!-- Command Palette Trigger (Cmd+K) -->
+        <button id="cmd-palette-trigger" class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 border border-slate-700/60 transition-colors" title="Command Palette (Cmd+K)">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="hidden sm:inline text-[11px] text-slate-400">⌘K</span>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-colors" aria-label="Toggle theme">
+          <span id="theme-toggle-icon"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       Hero Section with Dual Column (Pitch + Interactive Terminal)
+       ====================================================================== -->
+  <section id="hero" class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col justify-center items-center max-w-6xl mx-auto">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full mb-12">
+      
+      <!-- Left Column: Headline, Bio & Cal.com CTAs -->
+      <div class="lg:col-span-7 text-left">
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-emerald-500/30 text-emerald-400 text-xs font-medium mb-6 shadow-lg backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 status-pulse"></span>
+          <span>Information Science &amp; Engineering · NIE Mysuru</span>
+        </div>
+
+        <!-- Main Title & Role -->
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4 text-slate-100">
+          Hi, I'm <span class="gradient-text-rainbow">Rohith S.</span>
+        </h1>
+
+        <div class="text-base sm:text-xl font-semibold text-slate-300 mb-4">
+          Software engineering student — <span class="text-indigo-400">AI/ML</span>, <span class="text-cyan-400">full-stack</span>, and <span class="text-purple-400">cybersecurity</span>.
+        </div>
+
+        <p class="text-sm sm:text-base text-slate-400 leading-relaxed mb-6 max-w-xl">
+          Building things that combine backend systems, machine learning, and clean interfaces — from a CNN-LSTM delivery-time predictor to an AI chatbot that speaks to farmers in their own queries.
+        </p>
+
+        <!-- CTAs: Cal.com & Projects -->
+        <div class="flex flex-wrap items-center gap-3 mb-8">
+          <!-- Direct Cal.com button -->
+          <button data-action="open-cal" class="btn-primary text-sm py-3 px-5 shadow-xl">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Connect on Cal.com</span>
+          </button>
+
+          <a href="#projects" class="btn-secondary text-sm py-3 px-5">
+            <span>View Projects</span>
+            <span class="text-indigo-400">→</span>
+          </a>
+
+          <a href="#certificates" class="btn-secondary text-sm py-3 px-5">
+            <span>11 Credentials</span>
+          </a>
+        </div>
+
+        <!-- Quick Contact Links Row -->
+        <div class="flex flex-wrap items-center gap-2.5 text-xs font-mono text-slate-300">
+          <button data-copy-action="email" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-700/60 hover:border-indigo-400 transition-colors" title="Click to copy email">
+            <svg class="w-3.5 h-3.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>rohithsvernekar2@gmail.com</span>
+          </button>
+
+          <button data-copy-action="phone" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-700/60 hover:border-indigo-400 transition-colors" title="Click to copy phone">
+            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>+91 8660573142</span>
+          </button>
+
+          <a href="https://linkedin.com/in/rohith-s-4b5218330" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-700/60 hover:border-blue-400 transition-colors">
+            <span class="text-blue-400 font-bold">in</span>
+            <span>LinkedIn</span>
+          </a>
+
+          <a href="https://github.com/RohithSV2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/60 border border-slate-700/60 hover:border-white transition-colors">
+            <span class="text-slate-300 font-bold">⌥</span>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Developer Terminal -->
+      <div class="lg:col-span-5 w-full">
+        <div class="glass-panel overflow-hidden border border-white/10 shadow-2xl rounded-xl">
+          <div class="flex items-center justify-between px-4 py-3 bg-slate-950/80 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            </div>
+            <div class="text-xs font-mono text-slate-400">rohith@nie:~</div>
+            <div class="text-[11px] font-mono text-slate-500">zsh</div>
+          </div>
+          <div id="typed-terminal" class="p-5 font-mono min-h-[260px] bg-slate-950/90 text-left">
+            <!-- Terminal rows typed dynamically via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats Grid Row -->
+    <div id="hero-stats-container" class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-4xl mt-4">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Bento Grid About & Highlights
+       ====================================================================== -->
+  <section id="about" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="mb-10 text-center md:text-left">
+      <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-400 mb-2">// 01 — about</div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-100">Behind the build.</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Bento 1: Core Bio with Rohith's Portrait Photo -->
+      <div class="glass-panel spotlight-card p-6 md:p-8 md:col-span-2 border border-white/10 hover:border-indigo-500/40">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-5">
+          <div class="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-xl flex-shrink-0 group">
+            <img src="assets/profile.jpg" alt="Rohith S" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+            <span class="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-950 status-pulse" title="Available for Internships"></span>
+          </div>
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-mono font-semibold mb-2">
+              <span>Information Science &amp; Engineering</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-slate-100">Rohith S</h3>
+            <p class="text-xs text-indigo-300 font-mono">B.E. — ISE (2024–2028) · NIE Mysuru</p>
+            <p class="text-xs text-slate-400 mt-1 font-mono">USN: <span class="text-slate-200 font-semibold">4NI24IS157</span> · VTU</p>
+          </div>
+        </div>
+        <p class="text-sm md:text-base text-slate-300 leading-relaxed mb-6">
+          I'm an Information Science &amp; Engineering undergraduate at The National Institute of Engineering, Mysuru, with hands-on experience across software development, machine learning, Android development, and AI-powered web applications. Proficient in Java, Python, SQL, and Data Structures &amp; Algorithms, with a strong focus on backend systems, applied AI, and software built to hold up under real-world demands.
+        </p>
+
+        <!-- Quick Facts Matrix from old portfolio -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/10 text-xs font-mono">
+          <div>
+            <span class="text-slate-500 block">Based in</span>
+            <span class="text-slate-200 font-semibold">Shivamogga / Mysuru</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Studying</span>
+            <span class="text-indigo-300 font-semibold">B.E. ISE, 2024–2028</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Languages</span>
+            <span class="text-slate-200 font-semibold">EN, KN, HI, Konkani</span>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Focus Areas</span>
+            <span class="text-cyan-300 font-semibold">AI/ML · Backend · SEC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 2: Academic Honors -->
+      <div class="glass-panel spotlight-card p-6 md:p-8 border border-white/10 hover:border-indigo-500/40 flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-2">Academic Honors</div>
+          <h3 class="text-xl font-bold text-slate-100 mb-4">Board Standings</h3>
+          <div class="space-y-4">
+            <div class="p-3 rounded-lg bg-slate-900/60 border border-white/5">
+              <div class="text-xs text-slate-400">Pre-University (PCMC)</div>
+              <div class="text-2xl font-black font-mono text-emerald-400">93.66%</div>
+              <div class="text-[11px] text-slate-400">Sri Adichunchanagiri PU College</div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/60 border border-white/5">
+              <div class="text-xs text-slate-400">Secondary School (SSLC)</div>
+              <div class="text-2xl font-black font-mono text-cyan-400">98.72%</div>
+              <div class="text-[11px] text-slate-400">Sri Mahaveer Vidyalaya</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 3: Hackathon Achievement -->
+      <div class="glass-panel spotlight-card p-6 border border-white/10 hover:border-indigo-500/40">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="text-xs font-mono text-amber-400 uppercase font-bold mb-1">State Hackathon (24-Hour)</div>
+        <h3 class="text-base font-bold text-slate-100 mb-2">HACKYUGMA — YUGMA 1.0</h3>
+        <p class="text-xs text-slate-300 leading-relaxed mb-3">
+          Participated in the competitive 24-hour State-Level Hackathon at JNNCE Shimoga, building prototypes with real-time hardware &amp; software integration.
+        </p>
+        <a href="assets/certificates/Rohith S.pdf" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-amber-400 hover:underline">
+          View Hackathon PDF ↗
+        </a>
+      </div>
+
+      <!-- Bento 4: Academic Mentorship -->
+      <div class="glass-panel spotlight-card p-6 md:col-span-2 border border-white/10 hover:border-indigo-500/40 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">2025 – Present</span>
+          </div>
+          <div class="text-xs font-mono text-indigo-400 uppercase font-bold mb-1">Volunteering &amp; Mentorship</div>
+          <h3 class="text-lg font-bold text-slate-100 mb-2">Academic Mentor · Chinmaya Vidyalaya</h3>
+          <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-3">
+            Mentor PUC Science students with academic guidance, doubt clarification, and study strategies to build subject confidence; guide students on engineering disciplines and career paths, collaborating with faculty to build leadership and communication skills.
+          </p>
+        </div>
+        <div class="text-xs font-mono text-slate-400 pt-2 border-t border-white/5">
+          Jayalakshmipuram, Mysuru
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Projects Showcase (Filterable & Interactive)
+       ====================================================================== -->
+  <section id="projects" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-400 mb-2">// 02 — projects</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-100">What I've built.</h2>
+        <p class="text-sm text-slate-400 mt-1 max-w-xl">
+          Engineered full-stack applications, NLP assistants, deep learning time-series predictors, and system tools with clean, modular code.
+        </p>
+      </div>
+
+      <!-- Filter Tabs Container -->
+      <div id="project-filter-tabs" class="flex flex-wrap gap-2">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Projects Grid Container -->
+    <div id="projects-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Skills Matrix Section (All categories from resume + old portfolio)
+       ====================================================================== -->
+  <section id="skills" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="mb-10 text-center md:text-left">
+      <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-400 mb-2">// 03 — skills</div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-100">Core toolkit.</h2>
+      <p class="text-sm text-slate-400 mt-1">Coursework in Data Structures &amp; Algorithms, Database Management Systems, Operating Systems, Computer Networks, and Object-Oriented Programming underpins all of it.</p>
+    </div>
+
+    <div id="skills-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Certifications Showcase (11 VERIFIED CREDENTIALS - Centerpiece Feature)
+       ====================================================================== -->
+  <section id="certificates" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-400 mb-2">// 04 — certifications</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-100">Learning milestones.</h2>
+        <p class="text-sm text-slate-400 mt-1 max-w-xl">
+          All 11 formal credentials completed across Cybersecurity, Algorithms, Data Science, OOP Java, and C Systems.
+        </p>
+      </div>
+
+      <!-- Certificate Filter Tabs -->
+      <div id="cert-filter-tabs" class="flex flex-wrap gap-2">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Certificates Grid Container -->
+    <div id="certificates-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Timeline: Education & Achievements
+       ====================================================================== -->
+  <section id="timeline" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="mb-10 text-center md:text-left">
+      <div class="text-xs font-mono font-bold uppercase tracking-wider text-indigo-400 mb-2">// 05 — timeline</div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-100">Academic &amp; Leadership Timeline</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Education Milestones -->
+      <div class="lg:col-span-2 glass-panel p-6 md:p-8 border border-white/10">
+        <h3 class="text-lg font-bold text-slate-100 mb-6 flex items-center gap-2">
+          <svg class="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span>Academic Milestones</span>
+        </h3>
+        <div id="education-timeline-container">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Achievements & Volunteering -->
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-base font-bold text-slate-100 mb-4 flex items-center gap-2">
+            <svg class="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <span>Key Achievements</span>
+          </h3>
+          <div id="achievements-container">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-base font-bold text-slate-100 mb-4 flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>Volunteering</span>
+          </h3>
+          <div id="volunteering-container">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Connect & Cal.com Scheduling Section
+       ====================================================================== -->
+  <section id="cal-section" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 text-xs font-mono font-semibold mb-3">
+        <svg class="w-3.5 h-3.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        <span>Real-Time Scheduling via Cal.com</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-100 mb-4">Let's build something.</h2>
+      <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+        Open to internships, collaborations, and interesting engineering problems. Pick a time slot directly on the live calendar below, or reach out with a direct note.
+      </p>
+    </div>
+
+    <!-- Cal.com Embedded Widget -->
+    <div class="mb-14">
+      <div id="cal-inline-widget">
+        <!-- Injected via JavaScript -->
+      </div>
+      
+      <!-- Cal Handle Customizer Pill -->
+      <div class="flex items-center justify-center gap-2 mt-4 text-xs text-slate-400">
+        <span>Connected to Cal.com calendar.</span>
+        <button id="btn-customize-cal" class="text-indigo-400 hover:text-indigo-300 underline font-mono">
+          Change Cal username
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Message Form & Direct Contact -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Direct Contact Details -->
+      <div class="glass-panel p-6 md:p-8 border border-white/10 flex flex-col justify-between">
+        <div>
+          <h3 class="text-lg font-bold text-slate-100 mb-4">Get in Touch Directly</h3>
+          <p class="text-xs text-slate-400 mb-6">
+            Prefer direct email or phone? Reach out anytime and I will get back within 24 hours.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/60 border border-white/5">
+              <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              <div class="overflow-hidden">
+                <div class="text-[11px] text-slate-400 font-mono">EMAIL</div>
+                <div class="text-xs font-mono font-bold text-slate-200 truncate select-all">rohithsvernekar2@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/60 border border-white/5">
+              <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </span>
+              <div>
+                <div class="text-[11px] text-slate-400 font-mono">PHONE</div>
+                <div class="text-xs font-mono font-bold text-slate-200 select-all">+91 8660573142</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/60 border border-white/5">
+              <span class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </span>
+              <div>
+                <div class="text-[11px] text-slate-400 font-mono">LINKEDIN</div>
+                <a href="https://linkedin.com/in/rohith-s-4b5218330" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-blue-400 hover:underline">
+                  /in/rohith-s-4b5218330
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/5 mt-6">
+          <div class="text-xs text-slate-400">Location:</div>
+          <div class="text-xs font-semibold text-slate-200">Shivamogga / Mysuru, Karnataka, India</div>
+        </div>
+      </div>
+
+      <!-- Quick Message Form -->
+      <div class="lg:col-span-2 glass-panel p-6 md:p-8 border border-white/10">
+        <h3 class="text-lg font-bold text-slate-100 mb-2">Send a Direct Message</h3>
+        <p class="text-xs text-slate-400 mb-6">Fill in the fields below to launch your email client with a pre-filled subject and message.</p>
+
+        <form id="portfolio-contact-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-xs font-mono font-medium text-slate-300 mb-1">YOUR NAME *</label>
+              <input type="text" id="name" name="name" required placeholder="John Doe" />
+            </div>
+            <div>
+              <label for="email" class="block text-xs font-mono font-medium text-slate-300 mb-1">YOUR EMAIL *</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com" />
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="block text-xs font-mono font-medium text-slate-300 mb-1">PROJECT / INQUIRY MESSAGE *</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Hello Rohith, I reviewed your portfolio and would love to connect regarding an engineering role / collaboration..."></textarea>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 pt-2">
+            <span class="text-[11px] text-slate-400">Submitting opens your native mail client directly to rohithsvernekar2@gmail.com</span>
+            <button type="submit" class="btn-primary">
+              <span>Send Message</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Footer
+       ====================================================================== -->
+  <footer class="py-12 px-4 border-t border-white/5 bg-slate-950/80 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 font-mono">
+        <span class="w-6 h-6 rounded bg-indigo-600 flex items-center justify-center text-white text-xs font-bold">R</span>
+        <span>Rohith S · Information Science &amp; Engineering, NIE Mysuru</span>
+      </div>
+      
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <a href="#hero" class="hover:text-indigo-400 transition-colors">Back to top ↑</a>
+        <span>·</span>
+        <a href="https://github.com/RohithSV2" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+        <span>·</span>
+        <a href="https://linkedin.com/in/rohith-s-4b5218330" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+        <span>·</span>
+        <button data-action="open-cal" class="text-indigo-400 hover:text-indigo-300 font-bold">Cal.com</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       MODALS: Native <dialog> Elements with Accessible Backdrops
+       ====================================================================== -->
+
+  <!-- 1. Project Detail Modal -->
+  <dialog id="project-detail-dialog" class="w-full max-w-2xl">
+    <div id="project-modal-content"></div>
+  </dialog>
+
+  <!-- 2. Certificate Detail & Credential Inspector Modal -->
+  <dialog id="cert-detail-dialog" class="w-full max-w-2xl">
+    <div id="cert-modal-content"></div>
+  </dialog>
+
+  <!-- 3. Command Palette Modal (Cmd+K) -->
+  <dialog id="cmd-palette-dialog" class="w-full max-w-lg">
+    <div class="p-4 border-b border-white/10 bg-slate-900/90">
+      <div class="flex items-center gap-3">
+        <svg class="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="cmd-search-input" 
+          placeholder="Search projects, certificates, actions, or jump to section..." 
+          class="bg-transparent border-0 text-sm focus:outline-none focus:ring-0 p-0 text-white placeholder-slate-500 w-full"
+        />
+        <kbd class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">ESC</kbd>
+      </div>
+    </div>
+    <div id="cmd-search-results" class="p-3 max-h-80 overflow-y-auto space-y-1"></div>
+    <div class="px-4 py-2 border-t border-white/5 bg-slate-950 text-[11px] text-slate-400 flex items-center justify-between font-mono">
+      <span>Navigation: ↑ ↓ Enter</span>
+      <span>Rohith S Portfolio</span>
+    </div>
+  </dialog>
+
+  <!-- 4. Cal.com Modal Dialog Fallback -->
+  <dialog id="cal-modal-dialog" class="w-full max-w-4xl h-[680px]">
+    <div class="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-slate-950">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="text-xs font-mono font-bold text-slate-200">Schedule Meeting with Rohith S (Cal.com)</span>
+      </div>
+      <button class="text-slate-400 hover:text-white p-1 rounded" onclick="document.getElementById('cal-modal-dialog').close()">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <iframe id="cal-modal-frame" src="" class="w-full h-[calc(100%-48px)] border-0" title="Cal.com Booking Modal"></iframe>
+  </dialog>
+
+  <!-- Main JavaScript App -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

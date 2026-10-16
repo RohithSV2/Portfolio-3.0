@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgFood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180b0b" />
+      <stop offset="100%" stop-color="#2c1212" />
+    </linearGradient>
+    <linearGradient id="accentFood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="360" rx="16" fill="url(#bgFood)"/>
+
+  <!-- Window Header -->
+  <rect x="25" y="25" width="550" height="38" rx="8" fill="#301616"/>
+  <circle cx="45" cy="44" r="5" fill="#ef4444"/>
+  <circle cx="62" cy="44" r="5" fill="#eab308"/>
+  <circle cx="79" cy="44" r="5" fill="#22c55e"/>
+  <text x="110" y="49" font-family="'JetBrains Mono', monospace" font-size="12" fill="#fdba74">cnn-lstm-delivery // Deep Learning Time Predictor</text>
+
+  <!-- Left: CNN-LSTM Neural Network Layers -->
+  <rect x="35" y="78" width="280" height="245" rx="10" fill="#1b0c0c" stroke="#491b1b" stroke-width="1.5"/>
+  <text x="50" y="105" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#fb923c">CNN-LSTM NEURAL PIPELINE</text>
+
+  <!-- Neural Block 1 -->
+  <rect x="50" y="125" width="250" height="36" rx="6" fill="#331414" stroke="#f97316" stroke-width="1"/>
+  <text x="60" y="145" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="bold" fill="#fed7aa">1. 1D CNN Spatial Feature Extractor</text>
+  <text x="60" y="156" font-family="'JetBrains Mono', monospace" font-size="9" fill="#fdba74">Filters=64, Kernel=3, Traffic &amp; Route Spatials</text>
+
+  <!-- Neural Block 2 -->
+  <rect x="50" y="170" width="250" height="36" rx="6" fill="#331414" stroke="#f97316" stroke-width="1"/>
+  <text x="60" y="190" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="bold" fill="#fed7aa">2. Bidirectional LSTM Sequence Unit</text>
+  <text x="60" y="201" font-family="'JetBrains Mono', monospace" font-size="9" fill="#fdba74">Units=128, Temporal Sequence &amp; Weather Shift</text>
+
+  <!-- Neural Block 3 -->
+  <rect x="50" y="215" width="250" height="36" rx="6" fill="#331414" stroke="#ef4444" stroke-width="1"/>
+  <text x="60" y="235" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="bold" fill="#fed7aa">3. Dense Layer + Regression Head</text>
+  <text x="60" y="246" font-family="'JetBrains Mono', monospace" font-size="9" fill="#fca5a5">Dropout=0.2, ReLU, Mean Absolute Error</text>
+
+  <!-- Metrics Bar -->
+  <rect x="50" y="260" width="250" height="48" rx="6" fill="#451a03"/>
+  <text x="60" y="280" font-family="'JetBrains Mono', monospace" font-size="10" fill="#fed7aa">TRAIN MAE: 2.12 mins</text>
+  <text x="60" y="296" font-family="'JetBrains Mono', monospace" font-size="10" fill="#fde047">ACCURACY BOOST: +23.8% over Linear Baseline</text>
+
+  <!-- Right: Historical Data Visualizer -->
+  <rect x="330" y="78" width="235" height="245" rx="10" fill="#1b0c0c" stroke="#491b1b" stroke-width="1.5"/>
+  <text x="345" y="105" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#f87171">PREDICTION CURVE</text>
+
+  <!-- Line graph of actual vs predicted -->
+  <path d="M 350 220 Q 380 180 410 195 T 460 140 T 520 160 T 550 120" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,4"/>
+  <path d="M 350 215 Q 380 175 410 190 T 460 138 T 520 156 T 550 118" fill="none" stroke="#f97316" stroke-width="2.5"/>
+
+  <text x="350" y="240" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" fill="#fca5a5">── Predicted Delivery (mins)</text>
+  <text x="350" y="258" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" fill="#94a3b8">-- Actual Observed Time</text>
+
+  <rect x="345" y="275" width="205" height="35" rx="6" fill="#431407" stroke="#ea580c" stroke-width="1"/>
+  <text x="355" y="297" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="#fdba74">NumPy · Pandas · Jupyter</text>
+</svg>
